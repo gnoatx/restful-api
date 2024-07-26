@@ -31,7 +31,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public String getbyId(@PathVariable UUID id) {
+    public String getById(@PathVariable UUID id) {
         for (Cliente cliente : Cliente.clientes) {
             if (cliente.getId().equals(id)) {
                 return cliente.toString();
@@ -49,5 +49,22 @@ public class ClienteController {
             }
         }
         return "Cliente não encontrado.";
+    }
+
+    @PutMapping("/{id}")
+    public String updateCliente(@PathVariable UUID id, @RequestBody Cliente clienteAtualizado) {
+        for (Cliente cliente : Cliente.clientes) {
+            if (cliente.getId().equals(id)) {
+                cliente.setNome(clienteAtualizado.getNome());
+                cliente.setCpf(clienteAtualizado.getCpf());
+                cliente.setEndereco(clienteAtualizado.getEndereco());
+                cliente.setTelefone(clienteAtualizado.getTelefone());
+                cliente.setEmail(clienteAtualizado.getEmail());
+                cliente.setDataNascimento(clienteAtualizado.getDataNascimento());
+
+                return "Cliente atualizado com sucesso!";
+            }
+        }
+        return "Cliente não encontrado";
     }
 }
