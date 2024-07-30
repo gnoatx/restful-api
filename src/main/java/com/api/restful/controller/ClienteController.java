@@ -1,8 +1,11 @@
 package com.api.restful.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.api.restful.classes.Cliente;
+import com.api.restful.service.ClienteService;
 
 import java.util.UUID;
 
@@ -10,15 +13,13 @@ import java.util.UUID;
 @RequestMapping("clientes")
 public class ClienteController {
 
+    @Autowired
+    ClienteService clienteService;    
+
     // Get all clients
     @GetMapping
-    public String getAllClientes() {
-        if(!Cliente.clientes.isEmpty()) {
-            // Usar o Gson para retornar os objetos
-            return Cliente.clientes.toString();
-        } else {
-            return "Não há clientes cadastrados.";
-        }
+    public ResponseEntity<Cliente> getAll() {
+        return clienteService.getAll();
     }
 
     @PostMapping
