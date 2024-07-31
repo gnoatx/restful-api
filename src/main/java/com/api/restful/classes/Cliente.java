@@ -1,6 +1,5 @@
 package com.api.restful.classes;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
@@ -11,9 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "clientes")
-public class Cliente {
-    public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    
+public class Cliente {    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

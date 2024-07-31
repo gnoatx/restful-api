@@ -33,9 +33,7 @@ public class Endereco {
 
         String url = "https://viacep.com.br/ws/" + cep + "/json/";
 
-        Request request = new Request.Builder().
-        url(url).
-        build();
+        Request request = new Request.Builder().url(url).build();
 
         try {
             Response response = client.newCall(request).execute();
